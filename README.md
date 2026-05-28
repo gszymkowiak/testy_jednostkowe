@@ -77,8 +77,8 @@ Kod testowalny powinien być:
 - deterministyczny,
 - prosty do automatycznego uruchamiania.
 
-## Zobacz filmy instrukatrzowe
-- [![Test jednostkowy w C++](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=OZQhOUneeGc)
+## Filmy instrukrażowe
+- [![Test jednostkowy w C++ bez biblioteki statycznej ]([https://img.youtube.com/vi/VIDEO_ID/](https://www.youtube.com/watch?v=OZQhOUneeGc)0.jpg)](https://www.youtube.com/watch?v=OZQhOUneeGc)
 
 ## Dobre praktyki
 
