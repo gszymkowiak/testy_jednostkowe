@@ -193,12 +193,6 @@ Przykładowa organizacja projektu:
 
 ---
 
-# Autor
-
-Grzegorz Szymkowiak
-
----
-
 # Licencja
 
 Materiały dydaktyczne do użytku edukacyjnego.
