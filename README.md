@@ -1,56 +1,131 @@
-# Microsoft Native Unit Test Framework for C++
+# Testy jednostkowe w C++ – Microsoft Native Unit Test
 
-Przykład wykorzystania frameworka testów jednostkowych Microsoftu dla  C++ w Visual Studio.
+Materiały dydaktyczne dotyczące testów jednostkowych w języku C++ z wykorzystaniem frameworka **Microsoft Native Unit Test** dostępnego w środowisku **Visual Studio**.
 
----
+## Zakres materiału
 
-# Wymagania
+Repozytorium obejmuje:
 
-- Visual Studio 2022
-- Pakiet **Desktop development with C++**
-- Projekt typu:
-
-```text
-Native Unit Test Project
-```
-
----
-
-# Tworzenie projektu testowego
-
-## 1. Utwórz nowy projekt
-
-W Visual Studio wybierz:
-
-```text
-File → New → Project
-```
-
-Następnie wybierz:
-
-```text
-Native Unit Test Project
-```
+- wprowadzenie do testów jednostkowych,
+- zasady tworzenia testowalnego kodu,
+- wykorzystanie frameworka Microsoft Native Unit Test,
+- przykładowe testy jednostkowe w C++,
+- organizację projektu testowego,
+- wzorzec AAA (Arrange – Act – Assert),
+- wykorzystanie asercji.
 
 ---
 
-# Struktura projektu
+# Czym są testy jednostkowe?
 
-Przykładowy projekt zawiera:
+Test jednostkowy to test sprawdzający pojedynczy element aplikacji, najczęściej:
 
-```text
-Project
-│
-├── pch.h
-├── pch.cpp
-├── unittest1.cpp
-```
+- funkcję,
+- metodę,
+- klasę.
+
+Test wykonywany jest w izolacji od pozostałych elementów systemu w celu zweryfikowania poprawności działania kodu.
+
+## Zalety testów jednostkowych
+
+- szybsze wykrywanie błędów,
+- większa stabilność projektu,
+- łatwiejsza refaktoryzacja,
+- poprawa jakości kodu,
+- możliwość automatycznego testowania.
 
 ---
 
-# Podstawowy test jednostkowy
+# Cechy dobrych testów – zasada FIRST
 
-## Przykład funkcji
+## F – Fast
+Testy powinny działać szybko.
+
+## I – Independent
+Testy powinny być niezależne od siebie.
+
+## R – Repeatable
+Testy powinny zawsze zwracać ten sam wynik.
+
+## S – Self-validating
+Test powinien sam określać wynik PASS lub FAIL.
+
+## T – Timely
+Testy powinny być tworzone możliwie wcześnie.
+
+---
+
+# Struktura testu – AAA
+
+## Arrange
+Przygotowanie danych oraz obiektów potrzebnych do testu.
+
+## Act
+Uruchomienie testowanej funkcjonalności.
+
+## Assert
+Sprawdzenie, czy wynik jest zgodny z oczekiwaniem.
+
+---
+
+# Tworzenie testowalnego kodu
+
+Kod testowalny powinien być:
+
+- łatwy do izolowania,
+- niezależny od środowiska,
+- deterministyczny,
+- prosty do automatycznego uruchamiania.
+
+## Dobre praktyki
+
+### Jedna odpowiedzialność
+Klasa lub metoda powinna odpowiadać za jeden problem.
+
+### Funkcje deterministyczne
+Dla tych samych danych wejściowych funkcja zawsze zwraca ten sam wynik.
+
+### Czyste funkcje
+Czyste funkcje:
+- nie mają skutków ubocznych,
+- nie zależą od środowiska,
+- są łatwe do testowania.
+
+### Izolacja
+Kod powinien umożliwiać testowanie bez uruchamiania całej aplikacji.
+
+---
+
+# Microsoft Native Unit Test
+
+Microsoft Native Unit Test to framework do testów jednostkowych dla języka C++ dostępny w środowisku Visual Studio.
+
+## Najważniejsze cechy
+
+- integracja z Visual Studio,
+- obsługa Test Explorer,
+- natywna obsługa C++,
+- wbudowany system asercji.
+
+---
+
+# Najczęściej używane asercje
+
+| Metoda | Opis |
+|---|---|
+| `Assert::AreEqual()` | porównanie wartości |
+| `Assert::AreNotEqual()` | sprawdzenie różnicy |
+| `Assert::IsTrue()` | sprawdzenie warunku logicznego |
+| `Assert::IsFalse()` | sprawdzenie negacji warunku |
+| `Assert::IsNull()` | sprawdzenie wartości nullptr |
+| `Assert::IsNotNull()` | sprawdzenie istnienia obiektu |
+| `Assert::Fail()` | wymuszenie błędu testu |
+
+---
+
+# Przykład testu jednostkowego
+
+## Funkcja produkcyjna
 
 ```cpp
 int Add(int a, int b)
@@ -59,214 +134,71 @@ int Add(int a, int b)
 }
 ```
 
----
-
-## Przykład testu
+## Test jednostkowy
 
 ```cpp
-#include "pch.h"
-#include "CppUnitTest.h"
-
-using namespace Microsoft::VisualStudio::CppUnitTestFramework;
-
-namespace UnitTests
+TEST_CLASS(AddTests)
 {
-    TEST_CLASS(CalculatorTests)
+public:
+
+    TEST_METHOD(Add_ReturnsCorrectResult)
     {
-    public:
+        // Arrange
+        int a = 2;
+        int b = 3;
 
-        TEST_METHOD(AdditionTest)
-        {
-            int result = 2 + 3;
+        // Act
+        int result = Add(a, b);
 
-            Assert::AreEqual(5, result);
-        }
-    };
-}
+        // Assert
+        Assert::AreEqual(5, result);
+    }
+};
 ```
 
 ---
 
-# Elementy frameworka
+# Struktura projektu
 
-## TEST_CLASS
+Przykładowa organizacja projektu:
 
-Definiuje klasę zawierającą testy.
-
-```cpp
-TEST_CLASS(CalculatorTests)
-```
-
----
-
-## TEST_METHOD
-
-Definiuje pojedynczy test.
-
-```cpp
-TEST_METHOD(AdditionTest)
-```
-
----
-
-## Assert
-
-Służy do sprawdzania warunków testowych.
-
-### Przykłady
-
-```cpp
-Assert::AreEqual(5, value);
-Assert::IsTrue(x > 0);
-Assert::IsFalse(flag);
-Assert::IsNull(ptr);
-Assert::IsNotNull(ptr);
-```
-
----
-
-# Testowanie własnych funkcji
-
-## Kod aplikacji
-
-```cpp
-int Multiply(int a, int b)
-{
-    return a * b;
-}
-```
-
----
-
-## Kod testu
-
-```cpp
-TEST_METHOD(MultiplicationTest)
-{
-    int result = Multiply(4, 5);
-
-    Assert::AreEqual(20, result);
-}
+```text
+/Project
+│
+├── Add.h
+├── Add.cpp
+│
+└── Tests
+    └── AddTests.cpp
 ```
 
 ---
 
 # Uruchamianie testów
 
-## Test Explorer
-
-W Visual Studio:
-
-```text
-Test → Test Explorer
-```
-
----
-
-## Uruchomienie wszystkich testów
-
-```text
-Test → Run All Tests
-```
+1. Otwórz projekt w Visual Studio.
+2. Zbuduj rozwiązanie.
+3. Otwórz:
+   - `Test > Test Explorer`
+4. Uruchom:
+   - `Run All Tests`
 
 ---
 
-# Wyniki testów
+# Wymagania
 
-Visual Studio pokazuje:
-
-- testy zakończone sukcesem,
-- testy zakończone błędem,
-- komunikaty błędów,
-- czas wykonania.
+- Visual Studio 2022
+- Desktop development with C++
+- Microsoft Native Unit Test Framework
 
 ---
 
-# Przykład nieudanego testu
+# Autor
 
-```cpp
-TEST_METHOD(FailingTest)
-{
-    Assert::AreEqual(10, 5);
-}
-```
-
-Wynik:
-
-```text
-Assert failed. Expected:<10>. Actual:<5>.
-```
+Grzegorz Szymkowiak
 
 ---
 
-# Dobre praktyki
+# Licencja
 
-- jeden test powinien sprawdzać jedną rzecz,
-- nazwy testów powinny być czytelne,
-- testy powinny być niezależne,
-- testy powinny być szybkie,
-- należy unikać zależności od plików i środowiska.
-
----
-
-# Typowy schemat testu
-
-## Arrange
-
-Przygotowanie danych.
-
-## Act
-
-Wywołanie testowanej funkcji.
-
-## Assert
-
-Sprawdzenie wyniku.
-
----
-
-## Przykład
-
-```cpp
-TEST_METHOD(DivisionTest)
-{
-    // Arrange
-    int a = 10;
-    int b = 2;
-
-    // Act
-    int result = a / b;
-
-    // Assert
-    Assert::AreEqual(5, result);
-}
-```
-
----
-
-# Namespace frameworka
-
-```cpp
-using namespace Microsoft::VisualStudio::CppUnitTestFramework;
-```
-
-Framework znajduje się w:
-
-```cpp
-Microsoft::VisualStudio::CppUnitTestFramework
-```
-
----
-
-# Podsumowanie
-
-Microsoft Native Unit Test Framework umożliwia:
-
-- automatyczne testowanie kodu C++,
-- integrację z Visual Studio,
-- szybkie wykrywanie błędów,
-- bezpieczną refaktoryzację kodu,
-- budowę testów regresyjnych.
-
-Framework jest natywnym odpowiednikiem MSTest dla języka C++.
-
+Materiały dydaktyczne do użytku edukacyjnego.
