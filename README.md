@@ -6,7 +6,7 @@ Przykład wykorzystania frameworka testów jednostkowych Microsoftu dla natywneg
 
 # Wymagania
 
-- Visual Studio 2019 / 2022
+- Visual Studio 2022
 - Pakiet **Desktop development with C++**
 - Projekt typu:
 
