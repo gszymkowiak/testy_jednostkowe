@@ -78,7 +78,7 @@ Kod testowalny powinien być:
 - prosty do automatycznego uruchamiania.
 
 ## Filmy instrukrażowe
-- [![Test bez biblioteki statycznej](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=OZQhOUneeGc)
+- [![Test bez biblioteki statycznej](https://img.youtube.com/vi/OZQhOUneeGc/0.jpg)](https://www.youtube.com/watch?v=OZQhOUneeGc)
 
 ## Dobre praktyki
 
