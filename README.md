@@ -1,6 +1,6 @@
 # Microsoft Native Unit Test Framework for C++
 
-Przykład wykorzystania frameworka testów jednostkowych Microsoftu dla natywnego C++ w Visual Studio.
+Przykład wykorzystania frameworka testów jednostkowych Microsoftu dla  C++ w Visual Studio.
 
 ---
 
