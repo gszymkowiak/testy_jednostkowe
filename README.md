@@ -77,8 +77,8 @@ Kod testowalny powinien być:
 - deterministyczny,
 - prosty do automatycznego uruchamiania.
 
-## Filmy instrukrażowe
-- [![Test bez biblioteki statycznej](https://img.youtube.com/vi/OZQhOUneeGc/0.jpg)](https://www.youtube.com/watch?v=OZQhOUneeGc)
+## Film instruktażowy - test bez biblioteki statycznej
+[![Test bez biblioteki statycznej](https://img.youtube.com/vi/OZQhOUneeGc/0.jpg)](https://www.youtube.com/watch?v=OZQhOUneeGc)
 
 ## Dobre praktyki
 
